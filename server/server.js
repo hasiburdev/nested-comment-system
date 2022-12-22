@@ -1,12 +1,19 @@
 import fastify from "fastify";
 import { PrismaClient } from "@prisma/client";
 import sensible from "@fastify/sensible";
+import cors from "@fastify/cors";
+
 import { config } from "./config.js";
 
 export const prisma = new PrismaClient();
 const app = fastify();
 
 app.register(sensible);
+app.register(cors, {
+  origin: process.env.CLIENT_URL,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+});
 
 app.get("/posts", async (req, res) => {
   console.log("GET /posts");
