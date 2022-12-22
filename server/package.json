@@ -2,9 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon server.js"
+    "start:dev": "nodemon server.js",
+    "db:migrate": "prisma migrate dev --name init"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,14 @@
     "prisma": "^4.7.0"
   },
   "dependencies": {
-    "@prisma/client": "^4.7.0"
+    "@fastify/cookie": "^8.3.0",
+    "@fastify/cors": "^8.2.0",
+    "@fastify/sensible": "^5.2.0",
+    "@prisma/client": "^4.7.0",
+    "dotenv": "^16.0.3",
+    "fastify": "^4.10.2"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }
